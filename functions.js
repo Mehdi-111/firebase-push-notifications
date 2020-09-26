@@ -33,10 +33,6 @@ exports.recievedMessageNotification = functions.firestore
 
 
                     try {
-
-
-
-
                         return fetch('https://exp.host/--/api/v2/push/send', {
                             method: 'POST',
                             headers: {
@@ -46,21 +42,10 @@ exports.recievedMessageNotification = functions.firestore
                             },
                             body: JSON.stringify(message),
                         });
-
-
                     }
-
                     catch (err) {
                         console.log(err)
                     }
-
-
-
-
-
-
-
-
                 }
 
 
@@ -136,21 +121,8 @@ exports.sharedPostNotif = functions.firestore
                                         catch (err) {
                                             console.log(err)
                                         }
-
-
-
-
-
-
-
-
                                     }
-
-
                                 }
-
-
-
                             }).catch((err) => {
                                 console.log(err)
                                 return;
@@ -165,11 +137,7 @@ exports.sharedPostNotif = functions.firestore
                     let friends = user.data().friends;
                     if (!friends) {
                         return;
-
                     }
-
-
-
 
                     friends.map(user => {
                         admin.database().ref("users/" + user).once("value", async snapshot => {
@@ -204,53 +172,17 @@ exports.sharedPostNotif = functions.firestore
                                     catch (err) {
                                         console.log(err)
                                     }
-
-
-
-
-
-
-
-
                                 }
-
-
                             }
-
-
-
                         }).catch((err) => {
                             console.log(err)
                             return;
                         })
-
-
-
                     })
-
-
-
-
-
-
                 })
 
             }).catch(err => console.log(err))
-
-
-
-
-
         }).catch(err => console.log(err))
-
-
-
-
-
-
-
-
-
     })
 
 
@@ -304,23 +236,9 @@ exports.recievedfriendRequest = functions.database
                     catch (err) {
                         console.log(err)
                     }
-
-
-
-
-
-
-
-
                 }
-
-
             }
-
-
-
         }).catch((err) => console.log(err))
-
     })
 
 exports.onLikedPost = functions.firestore
@@ -362,30 +280,10 @@ exports.onLikedPost = functions.firestore
                         catch (err) {
                             console.log(err)
                         }
-
-
-
-
-
-
-
-
                     }
-
-
                 }
-
-
-
             }).catch((err) => console.log(err))
-
-
         }).catch((err) => console.log(err))
-
-
-
-
-
     })
 
 exports.onSubscribtion = functions.firestore
@@ -426,40 +324,16 @@ exports.onSubscribtion = functions.firestore
                         catch (err) {
                             console.log(err)
                         }
-
-
-
-
-
-
-
-
                     }
-
-
                 }
-
-
-
             }).catch((err) => console.log(err))
-
-
         }).catch((err) => console.log(err))
-
-
-
-
-
     })
 
 exports.onReportedPost = functions.database
     .ref('/reports/{concatId}')
     .onCreate((change, context) => {
-
-
         let token = "Admin's token"
-
-
         const message = {
             to: token,
             sound: 'default',
@@ -487,18 +361,4 @@ exports.onReportedPost = functions.database
         catch (err) {
             console.log(err)
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     })
